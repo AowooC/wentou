@@ -1,0 +1,7 @@
+node_modules
+data
+dev
+*.log
+.git
+*.md
+!public/*.md

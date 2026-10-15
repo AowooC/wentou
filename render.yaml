@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: wentou
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: LLM_API_KEY
+        sync: false          # 在 Render 控制台手动填写，不入库
+      - key: PUBLIC_URL
+        value: https://wentou.onrender.com
+      - key: ANALYZE_MODEL
+        value: gpt-4.1
+      - key: JUDGE_MODEL
+        value: gpt-4.1
+      - key: LLM_MODEL
+        value: gpt-4.1-mini
+      - key: FREE_ANALYSES_PER_IP_PER_DAY
+        value: "5"
+      - key: DAILY_USD_CAP
+        value: "3"
+      - key: MAX_NOTE_CHARS
+        value: "6000"
+      - key: IP_SALT
+        generateValue: true
