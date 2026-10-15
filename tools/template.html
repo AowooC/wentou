@@ -3,8 +3,8 @@
 <meta name="description" content="{{DESC}}"><meta name="keywords" content="{{KW}}">
 <link rel="canonical" href="{{CANON}}">
 <link rel="alternate" hreflang="zh-CN" href="https://wentou.onrender.com/"><link rel="alternate" hreflang="en" href="https://wentou.onrender.com/en/"><link rel="alternate" hreflang="x-default" href="https://wentou.onrender.com/en/">
-<meta property="og:type" content="website"><meta property="og:site_name" content="问透 Wentou"><meta property="og:locale" content="{{OGLOCALE}}">
-<meta property="og:title" content="{{OGT}}"><meta property="og:description" content="{{DESC}}"><meta property="og:url" content="{{CANON}}"><meta property="og:image" content="https://wentou.onrender.com/og.png"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website"><meta property="og:site_name" content="{{SITENAME}}"><meta property="og:locale" content="{{OGLOCALE}}">
+<meta property="og:title" content="{{OGT}}"><meta property="og:description" content="{{DESC}}"><meta property="og:url" content="{{CANON}}"><meta property="og:image" content="https://wentou.onrender.com/{{OGIMG}}"><meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{{LDJSON}}</script>
 <style>
 body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;max-width:1000px;margin:20px auto;padding:0 16px;color:#222;background:#f7f7fb}
@@ -22,17 +22,17 @@ mark{padding:1px 2px;border-radius:3px;cursor:pointer}
 table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #ddd;padding:6px;vertical-align:top}th{background:#eef}
 .note{font-size:12px;color:#666}.hero{background:#fff;border-radius:8px;padding:12px 18px;margin:10px 0}.hero h1{font-size:28px;margin:.2em 0}.hero small{font-size:14px;color:#888}.tag1{font-size:18px;color:#5b6cff;margin:.2em 0}footer{margin:20px 0}
 #sw{float:right;font-size:14px}body:lang(en){font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans CJK SC",sans-serif}</style></head><body>
-<header class="hero">{{SWITCH}}<h1>问透 <small>Wentou</small></h1><p class="tag1">{{TAG}}</p>{{INTRO}}<p class="note">{{WHO}}</p></header>
+<header class="hero">{{SWITCH}}{{H1}}<p class="tag1">{{TAG}}</p>{{INTRO}}<p class="note">{{WHO}}</p></header>
 <main><p class="note" id="mode">…</p><p class="note">{{L.steps}}</p>
 <div class="card"><h2>{{L.s1}}</h2><textarea id="notes" placeholder="{{L.ph}}"></textarea>
 <div>{{L.upload}}<input type="file" id="file" accept="image/png,image/jpeg,image/webp,application/pdf"> <span id="fst" class="note"></span></div>
-<button id="loadSample3">{{L.sample3}}</button><button id="loadSample">{{L.sample1}}</button><button id="loadSample2">{{L.sample2}}</button><button id="analyze">{{L.analyze}}</button><button class="g" id="demo">{{L.demo}}</button></div>
+{{SAMPLES}}<button id="analyze">{{L.analyze}}</button>{{DEMOBTN}}</div>
 <div class="card" id="s2" hidden><h2>{{L.s2}} <span id="cnt"></span></h2><div class="note" id="legend"></div><div id="hl"></div></div>
 <div class="card" id="s3" hidden><h2>{{L.s3}}</h2><div id="qs"></div><button id="judge">{{L.judge}}</button></div>
 <div class="card" id="s4" hidden><h2>{{L.s4}}</h2><div id="list"></div><button id="exp">{{L.copy}}</button><pre id="md" class="note" style="white-space:pre-wrap"></pre>
 <div id="fb" class="card"><b>{{L.fbq}}</b><br><button id="fbY">{{L.yes}}</button><button id="fbN" class="g">{{L.no}}</button><br><input id="fbC" maxlength="500" placeholder="{{L.fbph}}" style="width:100%;padding:6px;box-sizing:border-box;margin-top:6px"><div id="fbS" class="note"></div></div></div></main>
 <section class="card"><h2>{{L.faqh}}</h2>{{FAQ}}</section>
-<footer class="note"><p>{{DISC}}</p><p>{{PRIV}}</p><p>© 2026 问透 Wentou · <a href="/llms.txt">llms.txt</a></p></footer>
+<footer class="note"><p>{{DISC}}</p><p>{{PRIV}}</p><p>© 2026 {{SITENAME}} · <a href="/llms.txt">llms.txt</a></p></footer>
 <script>const L={{LJSON}};</script><script src="/offline.js"></script>
 <script>
 const $=id=>document.getElementById(id);const fmt=(s,o)=>s.replace(/\{(\w+)\}/g,(_,k)=>o[k]);
@@ -48,7 +48,7 @@ fetch('/api/status').then(r=>r.json()).then(d=>{LLM=d.llm&&d.global_ok&&d.free_l
 async function api(u,b){const r=await fetch(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});const j=await r.json();if(!r.ok)throw new Error(j.error);return j;}
 function fallback(e){$('mode').textContent='⚠️ '+e.message+L.fallback+L.offnote;LLM=false;lspots=null;}
 const loadTxt=f=>fetch(f).then(r=>r.text()).then(t=>$('notes').value=t);
-$('loadSample').onclick=()=>loadTxt('/sample_notes.md');$('loadSample2').onclick=()=>loadTxt('/sample_notes_2.md');$('loadSample3').onclick=()=>loadTxt('/sample_notes_en.md');
+document.querySelectorAll('[data-sample]').forEach(b=>b.onclick=()=>loadTxt(b.dataset.sample));
 $('file').onchange=async()=>{const f=$('file').files[0];if(!f)return;$('fst').textContent='…';const data=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result.split(',')[1]);fr.readAsDataURL(f);});
  try{const d=await api('/api/extract',{mime:f.type,data});$('notes').value=d.text;$('fst').textContent='✓ '+d.method;}catch(e){$('fst').textContent='✗ '+e.message;}};
 function renderLLM(text,sp){lspots=sp;const pos=sp.map(s=>({s,i:text.indexOf(s.quote)})).filter(x=>x.i>=0).sort((a,b)=>a.i-b.i);let h="",p=0;
@@ -69,7 +69,7 @@ $('analyze').onclick=async()=>{const t=$('notes').value;if(t.length>6000){alert(
  render(t);};
 $('judge').onclick=async()=>{if(lspots){try{return await judgeLLM();}catch(e){fallback(e);render($('notes').value);}}judge();};
 $('exp').onclick=()=>navigator.clipboard&&navigator.clipboard.writeText($('md').textContent);
-$('demo').onclick=demo;
+if($('demo'))$('demo').onclick=demo;
 let fbSent=false;async function sendFb(u){if(fbSent)return;try{await api('/api/feedback',{useful:u,comment:$('fbC').value,spots:(lspots||spots||[]).length,mode:(lspots?'llm':'offline')+'-'+L.lang});fbSent=true;$('fbS').textContent=L.thanks;}catch(e){$('fbS').textContent=L.fbfail+e.message;}}
 $('fbY').onclick=()=>sendFb(true);$('fbN').onclick=()=>sendFb(false);
 if(location.hash==="#demo")demo();
