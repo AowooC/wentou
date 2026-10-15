@@ -1,4 +1,8 @@
-# 问透 Wentou · 心理学笔记追问助手
+# 问透 Wentou · AI follow-up questions for psychology notes
+
+Psychology-only, for students worldwide. UI: 中文 (`/`) and English (`/en/`), auto-detected from browser language; AI output follows the notes' language. Non-psychology notes are politely declined. Offline fallback = rule-based, Chinese intro-psych only.
+
+Edit UI text in `tools/build.py` + `tools/template.html`, then run `python3 tools/build.py` to regenerate `public/index.html` and `public/en/index.html`.
 
 粘贴/上传普通心理学笔记 → AI 标出模糊点与易混概念 → 每处 2–3 个追问 → 语义判定理解程度 → 生成《疑点清单》。无 LLM 时自动降级为离线规则版。
 

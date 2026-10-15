@@ -1,23 +1,18 @@
-# 问透 Wentou（心理学笔记追问助手）
+# Wentou 问透 — AI follow-up questions for psychology lecture notes
 
-> 面向中国大学生的免费网页工具：粘贴或上传《普通心理学》课堂笔记，AI 找出模糊表述、易混概念和推理跳跃，逐点追问检验理解，并生成可拿去问老师/复习的《疑点清单》。适合心理学专业学生和 312/347 心理学考研复习。
+> Free web tool for university psychology students worldwide. Paste or upload psychology lecture notes (English or Chinese); the AI flags vague claims, confusable concepts and reasoning jumps, asks 2–3 probing questions per spot, judges the student's answers (mastered / partial / not yet), and outputs a list of open questions to bring to the instructor. Psychology only (intro/general, developmental, social, cognitive, biological, abnormal, research methods & statistics).
 
-- 网址：https://wentou.onrender.com/
-- 语言：简体中文
-- 价格：免费试用，每天 5 次 AI 分析；另有离线体验版
-- 隐私：笔记仅在处理时发送给 AI 服务，服务器不保存笔记内容
+- English: https://wentou.onrender.com/en/
+- 中文: https://wentou.onrender.com/
+- Price: free, 5 AI analyses per day per network; offline demo (Chinese intro-psych only) otherwise
+- Languages: UI in English and Chinese; questions/feedback follow the notes' language
+- Privacy: notes are sent to the AI service only to process the request; not stored on the server
 
-## 功能
-- 检测类型：易混概念、推理跳跃（所以/显然/因此）、结论无理由、术语未定义、绝对化表述、自标疑问、事实可能有误
-- 典型易混概念：经典条件反射 vs 操作性条件反射；负强化 vs 惩罚；工作记忆 vs 短时记忆；前摄抑制 vs 倒摄抑制；群体极化 vs 群体思维；刻板印象/偏见/歧视
-- 每个模糊点 2–3 个追问（解释机制、区分概念、应用到新情境）
-- 语义判定：已掌握 / 部分理解 / 未理解，附反馈
-- 输出疑点清单（可复制为 Markdown）
-- 支持粘贴文本、上传笔记照片或 PDF
+## Detects
+Confusable concepts (classical vs operant conditioning, negative reinforcement vs punishment, working vs short-term memory, correlation vs causation, random sampling vs random assignment, IV vs DV), reasoning jumps ("so/obviously"), claims without reasons, undefined terms, overgeneralizations, self-flagged doubts, possibly incorrect statements (e.g. p-value or heritability misinterpretations).
 
-## 适用人群
-- 修读《普通心理学》的大学生（专业课或通识选修）
-- 备考心理学考研（312 心理学专业基础综合 / 347 心理学专业综合）的同学
+## 中文简介
+问透：面向全球心理学大学生的免费工具。上传心理学课堂笔记，AI 找出模糊表述、易混概念和推理跳跃，逐点追问检验理解，生成可拿去问老师的《疑点清单》。适合普通心理学课程与 312/347 心理学考研复习。仅支持心理学笔记。
 
-## 局限
-AI 结果可能有误，仅作学习辅助，请以教材和授课老师为准。
+## Limitations
+AI output may be wrong; it is a study aid, not an authority. Non-psychology notes are politely declined.
